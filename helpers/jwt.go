@@ -2,7 +2,7 @@ package helpers
 
 import (
 	"errors"
-	"gomen/config"
+	"gulmen/config"
 	"time"
 
 	"github.com/golang-jwt/jwt/v5"

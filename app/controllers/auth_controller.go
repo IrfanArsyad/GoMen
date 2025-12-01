@@ -1,10 +1,10 @@
 package controllers
 
 import (
-	"gomen/app/requests"
-	"gomen/app/responses"
-	"gomen/app/services"
-	"gomen/helpers"
+	"gulmen/app/requests"
+	"gulmen/app/responses"
+	"gulmen/app/services"
+	"gulmen/helpers"
 
 	"github.com/gin-gonic/gin"
 )

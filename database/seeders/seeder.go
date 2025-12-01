@@ -1,9 +1,9 @@
 package seeders
 
 import (
-	"gomen/app/models"
-	"gomen/config"
-	"gomen/helpers"
+	"gulmen/app/models"
+	"gulmen/config"
+	"gulmen/helpers"
 	"log"
 )
 

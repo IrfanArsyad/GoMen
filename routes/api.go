@@ -1,9 +1,9 @@
 package routes
 
 import (
-	"gomen/app/controllers"
-	"gomen/app/middlewares"
-	"gomen/app/responses"
+	"gulmen/app/controllers"
+	"gulmen/app/middlewares"
+	"gulmen/app/responses"
 
 	"github.com/gin-gonic/gin"
 )

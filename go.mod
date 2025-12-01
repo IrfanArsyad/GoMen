@@ -1,4 +1,4 @@
-module gomen
+module gulmen
 
 go 1.18
 

@@ -2,10 +2,10 @@ package services
 
 import (
 	"errors"
-	"gomen/app/models"
-	"gomen/app/requests"
-	"gomen/config"
-	"gomen/helpers"
+	"gulmen/app/models"
+	"gulmen/app/requests"
+	"gulmen/config"
+	"gulmen/helpers"
 )
 
 type AuthService struct{}

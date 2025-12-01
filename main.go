@@ -2,11 +2,11 @@ package main
 
 import (
 	"flag"
-	"gomen/app/middlewares"
-	"gomen/config"
-	"gomen/database/migrations"
-	"gomen/database/seeders"
-	"gomen/routes"
+	"gulmen/app/middlewares"
+	"gulmen/config"
+	"gulmen/database/migrations"
+	"gulmen/database/seeders"
+	"gulmen/routes"
 	"log"
 	"time"
 

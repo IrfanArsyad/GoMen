@@ -1,8 +1,8 @@
 package middlewares
 
 import (
-	"gomen/app/responses"
-	"gomen/helpers"
+	"gulmen/app/responses"
+	"gulmen/helpers"
 	"strings"
 
 	"github.com/gin-gonic/gin"

@@ -1,7 +1,7 @@
 package middlewares
 
 import (
-	"gomen/app/responses"
+	"gulmen/app/responses"
 	"log"
 	"runtime/debug"
 

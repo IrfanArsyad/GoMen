@@ -2,11 +2,11 @@ package services
 
 import (
 	"errors"
-	"gomen/app/models"
-	"gomen/app/requests"
-	"gomen/app/responses"
-	"gomen/config"
-	"gomen/helpers"
+	"gulmen/app/models"
+	"gulmen/app/requests"
+	"gulmen/app/responses"
+	"gulmen/config"
+	"gulmen/helpers"
 )
 
 type UserService struct{}

@@ -44,7 +44,7 @@ func Load() {
 
 	AppCfg = &Config{
 		App: AppConfig{
-			Name:  getEnv("APP_NAME", "GoMen"),
+			Name:  getEnv("APP_NAME", "GulMen"),
 			Env:   getEnv("APP_ENV", "development"),
 			Port:  getEnv("APP_PORT", "8080"),
 			Debug: getEnv("APP_DEBUG", "true") == "true",
