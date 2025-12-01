@@ -1,10 +1,10 @@
 package controllers
 
 import (
-	"gulmen/app/requests"
-	"gulmen/app/responses"
-	"gulmen/app/services"
-	"gulmen/helpers"
+	"gomen/app/requests"
+	"gomen/app/responses"
+	"gomen/app/services"
+	"gomen/helpers"
 	"strconv"
 
 	"github.com/gin-gonic/gin"

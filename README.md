@@ -1,4 +1,4 @@
-# GulMen
+# GoMen
 
 A production-ready REST API starter kit built with Go, inspired by Laravel/Lumen architecture.
 
@@ -18,7 +18,7 @@ A production-ready REST API starter kit built with Go, inspired by Laravel/Lumen
 ## Project Structure
 
 ```
-gulmen/
+gomen/
 ├── app/
 │   ├── controllers/     # HTTP request handlers
 │   ├── middlewares/     # HTTP middlewares
@@ -47,7 +47,7 @@ gulmen/
 1. Clone the repository:
 ```bash
 git clone <repository-url>
-cd gulmen
+cd gomen
 ```
 
 2. Copy environment file:
@@ -60,7 +60,7 @@ cp .env.example .env
 DB_DRIVER=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=gulmen
+DB_DATABASE=gomen
 DB_USERNAME=root
 DB_PASSWORD=your_password
 ```
@@ -270,14 +270,14 @@ err := db.AutoMigrate(
 
 | Variable | Description | Default |
 |----------|-------------|---------|
-| APP_NAME | Application name | GulMen |
+| APP_NAME | Application name | GoMen |
 | APP_ENV | Environment (development/production) | development |
 | APP_PORT | Server port | 8080 |
 | APP_DEBUG | Debug mode | true |
 | DB_DRIVER | Database driver (mysql/postgres/sqlite) | mysql |
 | DB_HOST | Database host | 127.0.0.1 |
 | DB_PORT | Database port | 3306 |
-| DB_DATABASE | Database name | gulmen |
+| DB_DATABASE | Database name | gomen |
 | DB_USERNAME | Database username | root |
 | DB_PASSWORD | Database password | |
 | JWT_SECRET | JWT signing secret | your-secret-key |

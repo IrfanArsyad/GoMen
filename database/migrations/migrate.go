@@ -1,8 +1,8 @@
 package migrations
 
 import (
-	"gulmen/app/models"
-	"gulmen/config"
+	"gomen/app/models"
+	"gomen/config"
 	"log"
 )
 
