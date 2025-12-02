@@ -46,20 +46,45 @@ A production-ready REST API starter kit built with Go, inspired by Laravel/Lumen
 
 ## Installation
 
-### 1. Clone the repository
+### Quick Install (Recommended)
+
+Install GoMen CLI globally with one command:
+
+```bash
+git clone https://github.com/IrfanArsyad/GoMen.git
+cd GoMen
+./install.sh
+```
+
+This will:
+1. Check Go installation (requires Go 1.18+)
+2. Build the GoMen CLI
+3. Install `gomen` to `/usr/local/bin` (requires sudo)
+
+After installation, you can use `gomen` command from anywhere:
+
+```bash
+gomen help
+gomen make:controller User
+gomen make:resource Product
+```
+
+### Manual Installation
+
+#### 1. Clone the repository
 
 ```bash
 git clone https://github.com/IrfanArsyad/GoMen.git
 cd GoMen
 ```
 
-### 2. Copy environment file
+#### 2. Copy environment file
 
 ```bash
 cp .env.example .env
 ```
 
-### 3. Configure your database in `.env`
+#### 3. Configure your database in `.env`
 
 ```env
 DB_DRIVER=mysql
@@ -70,19 +95,19 @@ DB_USERNAME=root
 DB_PASSWORD=your_password
 ```
 
-### 4. Install dependencies
+#### 4. Install dependencies
 
 ```bash
 go mod tidy
 ```
 
-### 5. Build the CLI tool
+#### 5. Build the CLI tool
 
 ```bash
 make build
 ```
 
-### 6. Run migrations
+#### 6. Run migrations
 
 ```bash
 make migrate
@@ -90,7 +115,7 @@ make migrate
 go run main.go -migrate
 ```
 
-### 7. (Optional) Seed database
+#### 7. (Optional) Seed database
 
 ```bash
 make seed
@@ -98,7 +123,7 @@ make seed
 go run main.go -seed
 ```
 
-### 8. Run the server
+#### 8. Run the server
 
 ```bash
 make run
