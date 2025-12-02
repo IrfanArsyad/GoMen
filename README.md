@@ -1,6 +1,29 @@
 # GoMen
 
+```
+   ____       __  __
+  / ___| ___ |  \/  | ___ _ __
+ | |  _ / _ \| |\/| |/ _ \ '_ \
+ | |_| | (_) | |  | |  __/ | | |
+  \____|\___/|_|  |_|\___|_| |_|
+```
+
 A production-ready REST API starter kit built with Go, inspired by Laravel/Lumen architecture.
+
+## Table of Contents
+
+- [Features](#features)
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Project Structure](#project-structure)
+- [Code Generator (CLI)](#code-generator-cli)
+- [Running the Application](#running-the-application)
+- [API Endpoints](#api-endpoints)
+- [Usage Examples](#usage-examples)
+- [Response Format](#response-format)
+- [Adding New Features](#adding-new-features)
+- [Environment Variables](#environment-variables)
+- [License](#license)
 
 ## Features
 
@@ -14,6 +37,74 @@ A production-ready REST API starter kit built with Go, inspired by Laravel/Lumen
 - **Database Seeding** - Seed initial data
 - **Environment Config** - Using .env file
 - **MVC-like Architecture** - Clean code structure
+- **Code Generator** - CLI tool for scaffolding
+
+## Requirements
+
+- Go 1.18+
+- MySQL / PostgreSQL / SQLite
+
+## Installation
+
+### 1. Clone the repository
+
+```bash
+git clone <repository-url>
+cd gomen
+```
+
+### 2. Copy environment file
+
+```bash
+cp .env.example .env
+```
+
+### 3. Configure your database in `.env`
+
+```env
+DB_DRIVER=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=gomen
+DB_USERNAME=root
+DB_PASSWORD=your_password
+```
+
+### 4. Install dependencies
+
+```bash
+go mod tidy
+```
+
+### 5. Build the CLI tool
+
+```bash
+make build
+```
+
+### 6. Run migrations
+
+```bash
+make migrate
+# atau
+go run main.go -migrate
+```
+
+### 7. (Optional) Seed database
+
+```bash
+make seed
+# atau
+go run main.go -seed
+```
+
+### 8. Run the server
+
+```bash
+make run
+# atau
+go run main.go
+```
 
 ## Project Structure
 
@@ -26,94 +117,287 @@ gomen/
 │   ├── requests/        # Request validation structs
 │   ├── responses/       # Response helpers
 │   └── services/        # Business logic
+├── bin/                 # Compiled CLI binary
+├── cmd/
+│   └── goms/            # CLI tool source code
 ├── config/              # Configuration files
 ├── database/
 │   ├── migrations/      # Database migrations
 │   └── seeders/         # Database seeders
 ├── helpers/             # Helper functions
+├── internal/
+│   └── generator/       # Code generator templates
 ├── routes/              # Route definitions
 ├── main.go              # Application entry point
+├── Makefile             # Make commands
 ├── .env.example         # Environment template
 └── README.md
 ```
 
-## Requirements
+## Code Generator (CLI)
 
-- Go 1.18+
-- MySQL/PostgreSQL/SQLite
+GoMen menyediakan code generator CLI (`goms`) untuk mempermudah pembuatan controller, model, migration, dan lainnya.
 
-## Installation
+### Setup
 
-1. Clone the repository:
+Build CLI terlebih dahulu:
+
 ```bash
-git clone <repository-url>
-cd gomen
+make build
 ```
 
-2. Copy environment file:
+Ini akan membuat binary `goms` di folder `bin/`.
+
+### Cara Penggunaan
+
+Ada dua cara menggunakan generator:
+
+#### 1. Menggunakan Make (Recommended)
+
 ```bash
-cp .env.example .env
+make <generator> name=<Name>
 ```
 
-3. Configure your database in `.env`:
-```env
-DB_DRIVER=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=gomen
-DB_USERNAME=root
-DB_PASSWORD=your_password
+#### 2. Menggunakan CLI langsung
+
+```bash
+./bin/goms <command> <Name>
 ```
 
-4. Install dependencies:
+---
+
+### Generator Commands
+
+#### Create Controller
+
+Membuat file controller baru di `app/controllers/`.
+
 ```bash
-go mod tidy
+# Menggunakan Make
+make controller name=Product
+
+# Menggunakan CLI
+./bin/goms make:controller Product
 ```
 
-5. Run migrations:
+**Output:** `app/controllers/product_controller.go`
+
+---
+
+#### Create Model
+
+Membuat file model baru di `app/models/`.
+
 ```bash
-go run main.go -migrate
+# Menggunakan Make
+make model name=Product
+
+# Menggunakan CLI
+./bin/goms make:model Product
 ```
 
-6. (Optional) Seed database:
+**Output:** `app/models/product.go`
+
+---
+
+#### Create Migration
+
+Membuat file migration baru di `database/migrations/`.
+
 ```bash
-go run main.go -seed
+# Menggunakan Make
+make migration name=create_products_table
+
+# Menggunakan CLI
+./bin/goms make:migration create_products_table
 ```
 
-7. Run the server:
+**Output:** `database/migrations/YYYYMMDDHHMMSS_create_products_table.go`
+
+---
+
+#### Create Service
+
+Membuat file service baru di `app/services/`.
+
 ```bash
-go run main.go
+# Menggunakan Make
+make service name=Product
+
+# Menggunakan CLI
+./bin/goms make:service Product
+```
+
+**Output:** `app/services/product_service.go`
+
+---
+
+#### Create Request
+
+Membuat file request validation baru di `app/requests/`.
+
+```bash
+# Menggunakan Make
+make request name=Product
+
+# Menggunakan CLI
+./bin/goms make:request Product
+```
+
+**Output:** `app/requests/product_request.go`
+
+---
+
+#### Create Middleware
+
+Membuat file middleware baru di `app/middlewares/`.
+
+```bash
+# Menggunakan Make
+make middleware name=RateLimit
+
+# Menggunakan CLI
+./bin/goms make:middleware RateLimit
+```
+
+**Output:** `app/middlewares/rate_limit_middleware.go`
+
+---
+
+#### Create Seeder
+
+Membuat file seeder baru di `database/seeders/`.
+
+```bash
+# Menggunakan Make
+make seeder name=Product
+
+# Menggunakan CLI
+./bin/goms make:seeder Product
+```
+
+**Output:** `database/seeders/product_seeder.go`
+
+---
+
+#### Create Resource (Full CRUD)
+
+Membuat model, controller, service, dan request sekaligus.
+
+```bash
+# Menggunakan Make
+make resource name=Product
+
+# Menggunakan CLI
+./bin/goms make:resource Product
+```
+
+**Output:**
+- `app/models/product.go`
+- `app/controllers/product_controller.go`
+- `app/services/product_service.go`
+- `app/requests/product_request.go`
+
+---
+
+### Quick Reference
+
+| Command | Deskripsi | Output |
+|---------|-----------|--------|
+| `make controller name=<Name>` | Buat controller | `app/controllers/<name>_controller.go` |
+| `make model name=<Name>` | Buat model | `app/models/<name>.go` |
+| `make migration name=<name>` | Buat migration | `database/migrations/<timestamp>_<name>.go` |
+| `make service name=<Name>` | Buat service | `app/services/<name>_service.go` |
+| `make request name=<Name>` | Buat request | `app/requests/<name>_request.go` |
+| `make middleware name=<Name>` | Buat middleware | `app/middlewares/<name>_middleware.go` |
+| `make seeder name=<Name>` | Buat seeder | `database/seeders/<name>_seeder.go` |
+| `make resource name=<Name>` | Buat full resource | Model + Controller + Service + Request |
+
+---
+
+### Other Make Commands
+
+| Command | Deskripsi |
+|---------|-----------|
+| `make build` | Build CLI tool ke `bin/goms` |
+| `make run` | Jalankan aplikasi |
+| `make dev` | Jalankan dengan hot reload (perlu install [air](https://github.com/air-verse/air)) |
+| `make migrate` | Jalankan database migrations |
+| `make seed` | Jalankan database seeders |
+| `make clean` | Bersihkan build artifacts |
+| `make help` | Tampilkan semua commands |
+| `make list` | Lihat semua generator commands |
+| `make version` | Lihat versi CLI |
+
+---
+
+### CLI Commands
+
+```bash
+# Menggunakan Make (Recommended)
+make help                    # Tampilkan bantuan
+make list                    # Lihat semua commands
+make version                 # Lihat versi CLI
+
+# Atau menggunakan CLI langsung
+./bin/goms help              # Tampilkan bantuan
+./bin/goms list              # Lihat semua commands
+./bin/goms version           # Lihat versi CLI
+```
+
+## Running the Application
+
+### Development Mode
+
+```bash
+# Standard run
+make run
+
+# Hot reload (requires air)
+go install github.com/air-verse/air@latest
+make dev
+```
+
+### Production Build
+
+```bash
+go build -o gomen main.go
+./gomen
 ```
 
 ## API Endpoints
 
 ### Health Check
+
 ```
 GET /health
 ```
 
 ### Authentication
-```
-POST   /api/v1/auth/register       # Register new user
-POST   /api/v1/auth/login          # Login user
-GET    /api/v1/auth/profile        # Get current user profile (auth required)
-PUT    /api/v1/auth/profile        # Update profile (auth required)
-POST   /api/v1/auth/change-password # Change password (auth required)
-POST   /api/v1/auth/refresh        # Refresh token (auth required)
-```
+
+| Method | Endpoint | Description | Auth |
+|--------|----------|-------------|------|
+| POST | `/api/v1/auth/register` | Register new user | No |
+| POST | `/api/v1/auth/login` | Login user | No |
+| GET | `/api/v1/auth/profile` | Get current user profile | Yes |
+| PUT | `/api/v1/auth/profile` | Update profile | Yes |
+| POST | `/api/v1/auth/change-password` | Change password | Yes |
+| POST | `/api/v1/auth/refresh` | Refresh token | Yes |
 
 ### Users (Auth Required)
-```
-GET    /api/v1/users               # Get all users (paginated)
-GET    /api/v1/users/:id           # Get user by ID
-POST   /api/v1/users               # Create new user
-PUT    /api/v1/users/:id           # Update user
-DELETE /api/v1/users/:id           # Delete user
-```
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/v1/users` | Get all users (paginated) |
+| GET | `/api/v1/users/:id` | Get user by ID |
+| POST | `/api/v1/users` | Create new user |
+| PUT | `/api/v1/users/:id` | Update user |
+| DELETE | `/api/v1/users/:id` | Delete user |
 
 ## Usage Examples
 
 ### Register
+
 ```bash
 curl -X POST http://localhost:8080/api/v1/auth/register \
   -H "Content-Type: application/json" \
@@ -126,6 +410,7 @@ curl -X POST http://localhost:8080/api/v1/auth/register \
 ```
 
 ### Login
+
 ```bash
 curl -X POST http://localhost:8080/api/v1/auth/login \
   -H "Content-Type: application/json" \
@@ -136,12 +421,14 @@ curl -X POST http://localhost:8080/api/v1/auth/login \
 ```
 
 ### Get Profile (with token)
+
 ```bash
 curl -X GET http://localhost:8080/api/v1/auth/profile \
   -H "Authorization: Bearer YOUR_JWT_TOKEN"
 ```
 
 ### Get Users (paginated)
+
 ```bash
 curl -X GET "http://localhost:8080/api/v1/users?page=1&per_page=10" \
   -H "Authorization: Bearer YOUR_JWT_TOKEN"
@@ -150,6 +437,7 @@ curl -X GET "http://localhost:8080/api/v1/users?page=1&per_page=10" \
 ## Response Format
 
 ### Success Response
+
 ```json
 {
   "success": true,
@@ -159,6 +447,7 @@ curl -X GET "http://localhost:8080/api/v1/users?page=1&per_page=10" \
 ```
 
 ### Paginated Response
+
 ```json
 {
   "success": true,
@@ -174,6 +463,7 @@ curl -X GET "http://localhost:8080/api/v1/users?page=1&per_page=10" \
 ```
 
 ### Error Response
+
 ```json
 {
   "success": false,
@@ -184,7 +474,28 @@ curl -X GET "http://localhost:8080/api/v1/users?page=1&per_page=10" \
 
 ## Adding New Features
 
-### 1. Create Model
+### Quick Start dengan Generator
+
+```bash
+# 1. Buat resource lengkap
+make resource name=Post
+
+# 2. Edit model sesuai kebutuhan
+# app/models/post.go
+
+# 3. Buat migration
+make migration name=create_posts_table
+
+# 4. Register routes di routes/api.go
+
+# 5. Jalankan migration
+make migrate
+```
+
+### Manual Steps
+
+#### 1. Create Model
+
 ```go
 // app/models/post.go
 package models
@@ -198,7 +509,8 @@ type Post struct {
 }
 ```
 
-### 2. Create Request
+#### 2. Create Request
+
 ```go
 // app/requests/post_request.go
 package requests
@@ -209,7 +521,8 @@ type CreatePostRequest struct {
 }
 ```
 
-### 3. Create Service
+#### 3. Create Service
+
 ```go
 // app/services/post_service.go
 package services
@@ -225,7 +538,8 @@ func (s *PostService) Create(req *requests.CreatePostRequest) (*models.Post, err
 }
 ```
 
-### 4. Create Controller
+#### 4. Create Controller
+
 ```go
 // app/controllers/post_controller.go
 package controllers
@@ -241,7 +555,8 @@ func NewPostController() *PostController {
 }
 ```
 
-### 5. Register Routes
+#### 5. Register Routes
+
 ```go
 // routes/api.go
 func setupPostRoutes(rg *gin.RouterGroup) {
@@ -257,7 +572,8 @@ func setupPostRoutes(rg *gin.RouterGroup) {
 }
 ```
 
-### 6. Add Migration
+#### 6. Add Migration
+
 ```go
 // database/migrations/migrate.go
 err := db.AutoMigrate(
@@ -270,17 +586,17 @@ err := db.AutoMigrate(
 
 | Variable | Description | Default |
 |----------|-------------|---------|
-| APP_NAME | Application name | GoMen |
-| APP_ENV | Environment (development/production) | development |
-| APP_PORT | Server port | 8080 |
-| APP_DEBUG | Debug mode | true |
-| DB_DRIVER | Database driver (mysql/postgres/sqlite) | mysql |
-| DB_HOST | Database host | 127.0.0.1 |
-| DB_PORT | Database port | 3306 |
-| DB_DATABASE | Database name | gomen |
-| DB_USERNAME | Database username | root |
-| DB_PASSWORD | Database password | |
-| JWT_SECRET | JWT signing secret | your-secret-key |
+| `APP_NAME` | Application name | GoMen |
+| `APP_ENV` | Environment (development/production) | development |
+| `APP_PORT` | Server port | 8080 |
+| `APP_DEBUG` | Debug mode | true |
+| `DB_DRIVER` | Database driver (mysql/postgres/sqlite) | mysql |
+| `DB_HOST` | Database host | 127.0.0.1 |
+| `DB_PORT` | Database port | 3306 |
+| `DB_DATABASE` | Database name | gomen |
+| `DB_USERNAME` | Database username | root |
+| `DB_PASSWORD` | Database password | |
+| `JWT_SECRET` | JWT signing secret | your-secret-key |
 
 ## License
 
