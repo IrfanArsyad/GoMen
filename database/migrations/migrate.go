@@ -13,7 +13,7 @@ func Migrate() {
 
 	err := db.AutoMigrate(
 		&models.User{},
-		// Add more models here
+		&models.Product{},
 	)
 
 	if err != nil {

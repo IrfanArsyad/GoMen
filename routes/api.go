@@ -21,6 +21,21 @@ func SetupRoutes(router *gin.Engine) {
 	{
 		setupAuthRoutes(v1)
 		setupUserRoutes(v1)
+		setupProductRoutes(v1)
+	}
+}
+
+func setupProductRoutes(rg *gin.RouterGroup) {
+	productController := controllers.NewProductController()
+
+	products := rg.Group("/products")
+	products.Use(middlewares.AuthMiddleware())
+	{
+		products.GET("", productController.Index)
+		products.GET("/:id", productController.Show)
+		products.POST("", productController.Store)
+		products.PUT("/:id", productController.Update)
+		products.DELETE("/:id", productController.Delete)
 	}
 }
 

@@ -1,0 +1,443 @@
+{
+  "collection": {
+    "info": {
+      "_postman_id": "8e1e6a3d-0aed-43a8-9b52-77d66178cd43",
+      "name": "GoMen",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+      "updatedAt": "2025-12-02T13:59:59.000Z",
+      "createdAt": "2025-12-02T12:17:15.000Z",
+      "lastUpdatedBy": "9698905",
+      "uid": "9698905-8e1e6a3d-0aed-43a8-9b52-77d66178cd43"
+    },
+    "item": [
+      {
+        "name": "Register",
+        "id": "ba1218ff-4ba5-4441-934e-2fc6e8f6d315",
+        "protocolProfileBehavior": {
+          "disableBodyPruning": true
+        },
+        "request": {
+          "method": "POST",
+          "header": [],
+          "body": {
+            "mode": "raw",
+            "raw": "{\r\n    \"name\": \"Test User\",\r\n    \"email\": \"test@sample.com\",\r\n    \"password\": \"password123\",\r\n    \"password_confirm\": \"password123\"\r\n}",
+            "options": {
+              "raw": {
+                "language": "json"
+              }
+            }
+          },
+          "url": {
+            "raw": "http://localhost:8080/api/v1/auth/register",
+            "protocol": "http",
+            "host": [
+              "localhost"
+            ],
+            "port": "8080",
+            "path": [
+              "api",
+              "v1",
+              "auth",
+              "register"
+            ]
+          }
+        },
+        "response": [
+          {
+            "id": "f2d05c69-1ac5-432d-80c3-ff189d84ad17",
+            "name": "success",
+            "originalRequest": {
+              "method": "POST",
+              "header": [],
+              "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"name\": \"Test User\",\r\n    \"email\": \"test@sample.com\",\r\n    \"password\": \"password123\",\r\n    \"password_confirm\": \"password123\"\r\n}",
+                "options": {
+                  "raw": {
+                    "language": "json"
+                  }
+                }
+              },
+              "url": {
+                "raw": "http://localhost:8080/api/v1/auth/register",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "8080",
+                "path": [
+                  "api",
+                  "v1",
+                  "auth",
+                  "register"
+                ]
+              }
+            },
+            "status": "Created",
+            "code": 201,
+            "_postman_previewlanguage": null,
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json; charset=utf-8"
+              },
+              {
+                "key": "Date",
+                "value": "Tue, 02 Dec 2025 13:55:23 GMT"
+              },
+              {
+                "key": "Content-Length",
+                "value": "458"
+              }
+            ],
+            "cookie": [],
+            "responseTime": null,
+            "body": "{\n    \"success\": true,\n    \"message\": \"User registered successfully\",\n    \"data\": {\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJlbWFpbCI6InRlc3RAc2FtcGxlLmNvbSIsImV4cCI6MTc2NDc3MDEyMywibmJmIjoxNzY0NjgzNzIzLCJpYXQiOjE3NjQ2ODM3MjN9.Fcn9H9gDc094y_hCKl6eFcu_1h8MXwtS4kCOEe6M9_0\",\n        \"user\": {\n            \"id\": 3,\n            \"created_at\": \"2025-12-02T20:55:23.364839466+07:00\",\n            \"updated_at\": \"2025-12-02T20:55:23.364839466+07:00\",\n            \"name\": \"Test User\",\n            \"email\": \"test@sample.com\",\n            \"is_active\": true\n        }\n    }\n}",
+            "uid": "9698905-f2d05c69-1ac5-432d-80c3-ff189d84ad17"
+          },
+          {
+            "id": "c10cd640-ae49-4d73-a416-ceef0de70b70",
+            "name": "error",
+            "originalRequest": {
+              "method": "POST",
+              "header": [],
+              "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"name\": \"Test User\",\r\n    \"email\": \"test@sample.com\",\r\n    \"password\": \"password123\",\r\n    \"password_confirm\": \"password123\"\r\n}",
+                "options": {
+                  "raw": {
+                    "language": "json"
+                  }
+                }
+              },
+              "url": {
+                "raw": "http://localhost:8080/api/v1/auth/register",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "8080",
+                "path": [
+                  "api",
+                  "v1",
+                  "auth",
+                  "register"
+                ]
+              }
+            },
+            "status": "Bad Request",
+            "code": 400,
+            "_postman_previewlanguage": null,
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json; charset=utf-8"
+              },
+              {
+                "key": "Date",
+                "value": "Tue, 02 Dec 2025 13:55:43 GMT"
+              },
+              {
+                "key": "Content-Length",
+                "value": "54"
+              }
+            ],
+            "cookie": [],
+            "responseTime": null,
+            "body": "{\n    \"success\": false,\n    \"message\": \"email already registered\"\n}",
+            "uid": "9698905-c10cd640-ae49-4d73-a416-ceef0de70b70"
+          }
+        ],
+        "uid": "9698905-ba1218ff-4ba5-4441-934e-2fc6e8f6d315"
+      },
+      {
+        "name": "Health",
+        "id": "bc7b53e3-e030-4116-bbc6-79ee075b1636",
+        "protocolProfileBehavior": {
+          "disableBodyPruning": true
+        },
+        "request": {
+          "method": "GET",
+          "header": [],
+          "url": {
+            "raw": "http://localhost:8080/health",
+            "protocol": "http",
+            "host": [
+              "localhost"
+            ],
+            "port": "8080",
+            "path": [
+              "health"
+            ]
+          }
+        },
+        "response": [
+          {
+            "id": "a3e8e7c9-c644-44ae-ae72-fa2f51d2d1d9",
+            "name": "success",
+            "originalRequest": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "http://localhost:8080/health",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "8080",
+                "path": [
+                  "health"
+                ]
+              }
+            },
+            "status": "OK",
+            "code": 200,
+            "_postman_previewlanguage": null,
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json; charset=utf-8"
+              },
+              {
+                "key": "Date",
+                "value": "Tue, 02 Dec 2025 13:54:29 GMT"
+              },
+              {
+                "key": "Content-Length",
+                "value": "59"
+              }
+            ],
+            "cookie": [],
+            "responseTime": null,
+            "body": "{\n    \"success\": true,\n    \"message\": \"OK\",\n    \"data\": {\n        \"status\": \"healthy\"\n    }\n}",
+            "uid": "9698905-a3e8e7c9-c644-44ae-ae72-fa2f51d2d1d9"
+          }
+        ],
+        "uid": "9698905-bc7b53e3-e030-4116-bbc6-79ee075b1636"
+      },
+      {
+        "name": "Login",
+        "id": "8881d77a-2e55-42d4-897f-2fd1dc1777e4",
+        "protocolProfileBehavior": {
+          "disableBodyPruning": true
+        },
+        "request": {
+          "method": "POST",
+          "header": [],
+          "body": {
+            "mode": "raw",
+            "raw": "{\r\n    \"email\": \"test@sample.com\",\r\n    \"password\": \"password123\"\r\n}",
+            "options": {
+              "raw": {
+                "language": "json"
+              }
+            }
+          },
+          "url": {
+            "raw": "http://localhost:8080/api/v1/auth/login",
+            "protocol": "http",
+            "host": [
+              "localhost"
+            ],
+            "port": "8080",
+            "path": [
+              "api",
+              "v1",
+              "auth",
+              "login"
+            ]
+          }
+        },
+        "response": [
+          {
+            "id": "9ba51bc3-b9d2-46a1-b725-b0cfb2890907",
+            "name": "sucess",
+            "originalRequest": {
+              "method": "POST",
+              "header": [],
+              "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"email\": \"test@sample.com\",\r\n    \"password\": \"password123\"\r\n}",
+                "options": {
+                  "raw": {
+                    "language": "json"
+                  }
+                }
+              },
+              "url": {
+                "raw": "http://localhost:8080/api/v1/auth/login",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "8080",
+                "path": [
+                  "api",
+                  "v1",
+                  "auth",
+                  "login"
+                ]
+              }
+            },
+            "status": "OK",
+            "code": 200,
+            "_postman_previewlanguage": null,
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json; charset=utf-8"
+              },
+              {
+                "key": "Date",
+                "value": "Tue, 02 Dec 2025 13:56:59 GMT"
+              },
+              {
+                "key": "Content-Length",
+                "value": "440"
+              }
+            ],
+            "cookie": [],
+            "responseTime": null,
+            "body": "{\n    \"success\": true,\n    \"message\": \"Login successful\",\n    \"data\": {\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJlbWFpbCI6InRlc3RAc2FtcGxlLmNvbSIsImV4cCI6MTc2NDc3MDIxOSwibmJmIjoxNzY0NjgzODE5LCJpYXQiOjE3NjQ2ODM4MTl9.YvxV9jMTRlDjRtvHxMa_5oOied2JpV5whDEVjWeYVso\",\n        \"user\": {\n            \"id\": 3,\n            \"created_at\": \"2025-12-02T20:55:23.364839+07:00\",\n            \"updated_at\": \"2025-12-02T20:55:23.364839+07:00\",\n            \"name\": \"Test User\",\n            \"email\": \"test@sample.com\",\n            \"is_active\": true\n        }\n    }\n}",
+            "uid": "9698905-9ba51bc3-b9d2-46a1-b725-b0cfb2890907"
+          },
+          {
+            "id": "3b01020d-2245-41b1-9457-372a481c9601",
+            "name": "error",
+            "originalRequest": {
+              "method": "POST",
+              "header": [],
+              "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"email\": \"test@sample.com\",\r\n    \"password\": \"password123a\"\r\n}",
+                "options": {
+                  "raw": {
+                    "language": "json"
+                  }
+                }
+              },
+              "url": {
+                "raw": "http://localhost:8080/api/v1/auth/login",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "8080",
+                "path": [
+                  "api",
+                  "v1",
+                  "auth",
+                  "login"
+                ]
+              }
+            },
+            "status": "Unauthorized",
+            "code": 401,
+            "_postman_previewlanguage": null,
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json; charset=utf-8"
+              },
+              {
+                "key": "Date",
+                "value": "Tue, 02 Dec 2025 13:57:21 GMT"
+              },
+              {
+                "key": "Content-Length",
+                "value": "49"
+              }
+            ],
+            "cookie": [],
+            "responseTime": null,
+            "body": "{\n    \"success\": false,\n    \"message\": \"invalid credentials\"\n}",
+            "uid": "9698905-3b01020d-2245-41b1-9457-372a481c9601"
+          }
+        ],
+        "uid": "9698905-8881d77a-2e55-42d4-897f-2fd1dc1777e4"
+      },
+      {
+        "name": "Profile",
+        "id": "2e375f74-adcf-4b12-adf5-88046befad99",
+        "protocolProfileBehavior": {
+          "disableBodyPruning": true
+        },
+        "request": {
+          "auth": {
+            "type": "bearer",
+            "bearer": [
+              {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJlbWFpbCI6InRlc3RAc2FtcGxlLmNvbSIsImV4cCI6MTc2NDc3MDIxOSwibmJmIjoxNzY0NjgzODE5LCJpYXQiOjE3NjQ2ODM4MTl9.YvxV9jMTRlDjRtvHxMa_5oOied2JpV5whDEVjWeYVso",
+                "type": "string"
+              }
+            ]
+          },
+          "method": "GET",
+          "header": [],
+          "url": {
+            "raw": "http://localhost:8080/api/v1/auth/profile",
+            "protocol": "http",
+            "host": [
+              "localhost"
+            ],
+            "port": "8080",
+            "path": [
+              "api",
+              "v1",
+              "auth",
+              "profile"
+            ]
+          }
+        },
+        "response": [
+          {
+            "id": "ab5a03c6-52ee-4985-b734-976742a3d7df",
+            "name": "success",
+            "originalRequest": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "http://localhost:8080/api/v1/auth/profile",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "8080",
+                "path": [
+                  "api",
+                  "v1",
+                  "auth",
+                  "profile"
+                ]
+              }
+            },
+            "status": "OK",
+            "code": 200,
+            "_postman_previewlanguage": null,
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json; charset=utf-8"
+              },
+              {
+                "key": "Date",
+                "value": "Tue, 02 Dec 2025 13:58:28 GMT"
+              },
+              {
+                "key": "Content-Length",
+                "value": "233"
+              }
+            ],
+            "cookie": [],
+            "responseTime": null,
+            "body": "{\n    \"success\": true,\n    \"message\": \"Profile retrieved successfully\",\n    \"data\": {\n        \"id\": 3,\n        \"created_at\": \"2025-12-02T20:55:23.364839+07:00\",\n        \"updated_at\": \"2025-12-02T20:55:23.364839+07:00\",\n        \"name\": \"Test User\",\n        \"email\": \"test@sample.com\",\n        \"is_active\": true\n    }\n}",
+            "uid": "9698905-ab5a03c6-52ee-4985-b734-976742a3d7df"
+          }
+        ],
+        "uid": "9698905-2e375f74-adcf-4b12-adf5-88046befad99"
+      }
+    ]
+  }
+}

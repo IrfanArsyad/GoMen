@@ -28,7 +28,7 @@ func (s *AuthService) Register(req *requests.RegisterRequest) (*models.User, str
 	if err != nil {
 		return nil, "", errors.New("failed to hash password")
 	}
-
+	
 	// Create user
 	user := models.User{
 		Name:     req.Name,
