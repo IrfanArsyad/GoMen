@@ -40,6 +40,10 @@ Default admin user setelah seed:
 - Email: `admin@example.com`
 - Password: `password123`
 
+## Postman Collection
+
+Import file `Postman.json` ke Postman untuk testing API.
+
 ## API Endpoints
 
 ### Auth (Public)
