@@ -500,14 +500,17 @@ gomen make:migration create_posts_table
 gomen migrate
 ```
 
-### Manual Steps
+### Step by Step dengan CLI
 
 #### 1. Create Model
 
-```go
-// app/models/post.go
-package models
+```bash
+gomen make:model Post
+```
 
+Kemudian edit `app/models/post.go` sesuai kebutuhan:
+
+```go
 type Post struct {
     BaseModel
     Title   string `json:"title" gorm:"size:255;not null"`
@@ -519,10 +522,13 @@ type Post struct {
 
 #### 2. Create Request
 
-```go
-// app/requests/post_request.go
-package requests
+```bash
+gomen make:request Post
+```
 
+Edit `app/requests/post_request.go`:
+
+```go
 type CreatePostRequest struct {
     Title   string `json:"title" validate:"required,min=3,max=255"`
     Content string `json:"content" validate:"required"`
@@ -531,42 +537,27 @@ type CreatePostRequest struct {
 
 #### 3. Create Service
 
-```go
-// app/services/post_service.go
-package services
-
-type PostService struct{}
-
-func NewPostService() *PostService {
-    return &PostService{}
-}
-
-func (s *PostService) Create(req *requests.CreatePostRequest) (*models.Post, error) {
-    // Implementation
-}
+```bash
+gomen make:service Post
 ```
 
 #### 4. Create Controller
 
-```go
-// app/controllers/post_controller.go
-package controllers
-
-type PostController struct {
-    postService *services.PostService
-}
-
-func NewPostController() *PostController {
-    return &PostController{
-        postService: services.NewPostService(),
-    }
-}
+```bash
+gomen make:controller Post
 ```
 
-#### 5. Register Routes
+#### 5. Create Migration
+
+```bash
+gomen make:migration create_posts_table
+```
+
+#### 6. Register Routes
+
+Edit `routes/api.go`:
 
 ```go
-// routes/api.go
 func setupPostRoutes(rg *gin.RouterGroup) {
     postController := controllers.NewPostController()
 
@@ -580,14 +571,10 @@ func setupPostRoutes(rg *gin.RouterGroup) {
 }
 ```
 
-#### 6. Add Migration
+#### 7. Run Migration
 
-```go
-// database/migrations/migrate.go
-err := db.AutoMigrate(
-    &models.User{},
-    &models.Post{}, // Add new model
-)
+```bash
+gomen migrate
 ```
 
 ## Environment Variables
