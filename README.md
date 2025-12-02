@@ -1,6 +1,32 @@
 # GoMen
 
-REST API starter kit dengan Go, terinspirasi dari Laravel/Lumen.
+**Lightning-Fast Go Framework with Laravel Elegance**
+
+GoMen adalah micro-framework Go yang menggabungkan kecepatan raw performance Go dengan keanggunan dan kemudahan development ala Laravel/Lumen.
+
+## Kenapa GoMen?
+
+🚀 **Blazing Fast** - Dibangun di atas Go dan Gin, GoMen memberikan performa hingga 40x lebih cepat dibanding framework PHP tradisional.
+
+🎯 **Familiar & Intuitive** - Jika kamu sudah familiar dengan Laravel/Lumen, kamu akan merasa seperti di rumah. Struktur folder, naming convention, dan workflow yang sudah kamu kenal.
+
+⚡ **CLI Generator** - Buat model, controller, migration, dan resource hanya dengan satu perintah. Tidak perlu boilerplate berulang-ulang.
+
+🔐 **Built-in Authentication** - JWT authentication siap pakai out-of-the-box. Register, login, dan middleware auth sudah tersedia.
+
+🛠️ **Developer Experience First** - Hot reload, structured logging, dan error handling yang jelas membuat debugging jadi menyenangkan.
+
+📦 **Lightweight & Minimal** - Tidak ada bloat. Hanya fitur yang kamu butuhkan, tanpa overhead yang tidak perlu.
+
+🏗️ **Clean Architecture** - Separation of concerns yang jelas: Controllers, Services, Models, Requests, dan Middlewares terorganisir rapi.
+
+## Perfect For
+
+- REST API & Microservices
+- Backend untuk aplikasi mobile
+- High-traffic applications yang butuh performa tinggi
+- Developer Laravel/Lumen yang ingin migrasi ke Go
+- Startup yang butuh scalability tanpa kompleksitas
 
 ## Installation
 
@@ -119,3 +145,7 @@ JWT_SECRET=your-secret-key
 ## License
 
 MIT - [Irfan Arsyad](https://github.com/IrfanArsyad)
+
+---
+
+**"Write Go code with Laravel comfort. Ship faster, scale better."**
