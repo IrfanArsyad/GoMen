@@ -49,8 +49,8 @@ A production-ready REST API starter kit built with Go, inspired by Laravel/Lumen
 ### 1. Clone the repository
 
 ```bash
-git clone <repository-url>
-cd gomen
+git clone https://github.com/IrfanArsyad/GoMen.git
+cd GoMen
 ```
 
 ### 2. Copy environment file
@@ -598,6 +598,14 @@ err := db.AutoMigrate(
 | `DB_PASSWORD` | Database password | |
 | `JWT_SECRET` | JWT signing secret | your-secret-key |
 
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
 ## License
 
 MIT License
+
+## Author
+
+**Irfan Arsyad** - [GitHub](https://github.com/IrfanArsyad)
