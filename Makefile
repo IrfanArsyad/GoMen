@@ -8,13 +8,13 @@ GORUN=$(GOCMD) run
 
 # Build directory
 BUILD_DIR=bin
-BINARY_NAME=goms
+BINARY_NAME=gomen
 
 # Build the CLI tool
 build:
 	@echo "Building $(BINARY_NAME)..."
 	@mkdir -p $(BUILD_DIR)
-	@$(GOBUILD) -o $(BUILD_DIR)/$(BINARY_NAME) ./cmd/goms
+	@$(GOBUILD) -o $(BUILD_DIR)/$(BINARY_NAME) ./cmd/gomen
 	@echo "Build complete: $(BUILD_DIR)/$(BINARY_NAME)"
 
 # Run the main application
@@ -44,35 +44,35 @@ clean:
 
 # Create a new controller: make controller name=Product
 controller:
-	@./bin/goms make:controller $(name)
+	@./bin/gomen make:controller $(name)
 
 # Create a new model: make model name=Product
 model:
-	@./bin/goms make:model $(name)
+	@./bin/gomen make:model $(name)
 
 # Create a new migration: make migration name=create_products_table
 migration:
-	@./bin/goms make:migration $(name)
+	@./bin/gomen make:migration $(name)
 
 # Create a new service: make service name=Product
 service:
-	@./bin/goms make:service $(name)
+	@./bin/gomen make:service $(name)
 
 # Create a new request: make request name=Product
 request:
-	@./bin/goms make:request $(name)
+	@./bin/gomen make:request $(name)
 
 # Create a new middleware: make middleware name=RateLimit
 middleware:
-	@./bin/goms make:middleware $(name)
+	@./bin/gomen make:middleware $(name)
 
 # Create a new seeder: make seeder name=Product
 seeder:
-	@./bin/goms make:seeder $(name)
+	@./bin/gomen make:seeder $(name)
 
 # Create a full resource (model, controller, service, request): make resource name=Product
 resource:
-	@./bin/goms make:resource $(name)
+	@./bin/gomen make:resource $(name)
 
 # Show CLI version
 version:

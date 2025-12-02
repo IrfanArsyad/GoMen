@@ -119,7 +119,7 @@ gomen/
 │   └── services/        # Business logic
 ├── bin/                 # Compiled CLI binary
 ├── cmd/
-│   └── goms/            # CLI tool source code
+│   └── gomen/            # CLI tool source code
 ├── config/              # Configuration files
 ├── database/
 │   ├── migrations/      # Database migrations
@@ -136,7 +136,7 @@ gomen/
 
 ## Code Generator (CLI)
 
-GoMen menyediakan code generator CLI (`goms`) untuk mempermudah pembuatan controller, model, migration, dan lainnya.
+GoMen menyediakan code generator CLI (`gomen`) untuk mempermudah pembuatan controller, model, migration, dan lainnya.
 
 ### Setup
 
@@ -146,7 +146,7 @@ Build CLI terlebih dahulu:
 make build
 ```
 
-Ini akan membuat binary `goms` di folder `bin/`.
+Ini akan membuat binary `gomen` di folder `bin/`.
 
 ### Cara Penggunaan
 
@@ -161,7 +161,7 @@ make <generator> name=<Name>
 #### 2. Menggunakan CLI langsung
 
 ```bash
-./bin/goms <command> <Name>
+./bin/gomen <command> <Name>
 ```
 
 ---
@@ -177,7 +177,7 @@ Membuat file controller baru di `app/controllers/`.
 make controller name=Product
 
 # Menggunakan CLI
-./bin/goms make:controller Product
+./bin/gomen make:controller Product
 ```
 
 **Output:** `app/controllers/product_controller.go`
@@ -193,7 +193,7 @@ Membuat file model baru di `app/models/`.
 make model name=Product
 
 # Menggunakan CLI
-./bin/goms make:model Product
+./bin/gomen make:model Product
 ```
 
 **Output:** `app/models/product.go`
@@ -209,7 +209,7 @@ Membuat file migration baru di `database/migrations/`.
 make migration name=create_products_table
 
 # Menggunakan CLI
-./bin/goms make:migration create_products_table
+./bin/gomen make:migration create_products_table
 ```
 
 **Output:** `database/migrations/YYYYMMDDHHMMSS_create_products_table.go`
@@ -225,7 +225,7 @@ Membuat file service baru di `app/services/`.
 make service name=Product
 
 # Menggunakan CLI
-./bin/goms make:service Product
+./bin/gomen make:service Product
 ```
 
 **Output:** `app/services/product_service.go`
@@ -241,7 +241,7 @@ Membuat file request validation baru di `app/requests/`.
 make request name=Product
 
 # Menggunakan CLI
-./bin/goms make:request Product
+./bin/gomen make:request Product
 ```
 
 **Output:** `app/requests/product_request.go`
@@ -257,7 +257,7 @@ Membuat file middleware baru di `app/middlewares/`.
 make middleware name=RateLimit
 
 # Menggunakan CLI
-./bin/goms make:middleware RateLimit
+./bin/gomen make:middleware RateLimit
 ```
 
 **Output:** `app/middlewares/rate_limit_middleware.go`
@@ -273,7 +273,7 @@ Membuat file seeder baru di `database/seeders/`.
 make seeder name=Product
 
 # Menggunakan CLI
-./bin/goms make:seeder Product
+./bin/gomen make:seeder Product
 ```
 
 **Output:** `database/seeders/product_seeder.go`
@@ -289,7 +289,7 @@ Membuat model, controller, service, dan request sekaligus.
 make resource name=Product
 
 # Menggunakan CLI
-./bin/goms make:resource Product
+./bin/gomen make:resource Product
 ```
 
 **Output:**
@@ -319,7 +319,7 @@ make resource name=Product
 
 | Command | Deskripsi |
 |---------|-----------|
-| `make build` | Build CLI tool ke `bin/goms` |
+| `make build` | Build CLI tool ke `bin/gomen` |
 | `make run` | Jalankan aplikasi |
 | `make dev` | Jalankan dengan hot reload (perlu install [air](https://github.com/air-verse/air)) |
 | `make migrate` | Jalankan database migrations |
@@ -340,9 +340,9 @@ make list                    # Lihat semua commands
 make version                 # Lihat versi CLI
 
 # Atau menggunakan CLI langsung
-./bin/goms help              # Tampilkan bantuan
-./bin/goms list              # Lihat semua commands
-./bin/goms version           # Lihat versi CLI
+./bin/gomen help              # Tampilkan bantuan
+./bin/gomen list              # Lihat semua commands
+./bin/gomen version           # Lihat versi CLI
 ```
 
 ## Running the Application
