@@ -95,40 +95,29 @@ DB_USERNAME=root
 DB_PASSWORD=your_password
 ```
 
-#### 4. Install dependencies
+#### 4. Install dependencies and build CLI
 
 ```bash
 go mod tidy
-```
-
-#### 5. Build the CLI tool
-
-```bash
 make build
 ```
 
-#### 6. Run migrations
+#### 5. Run migrations
 
 ```bash
-make migrate
-# atau
-go run main.go -migrate
+gomen migrate
 ```
 
-#### 7. (Optional) Seed database
+#### 6. (Optional) Seed database
 
 ```bash
-make seed
-# atau
-go run main.go -seed
+gomen seed
 ```
 
-#### 8. Run the server
+#### 7. Run the server
 
 ```bash
-make run
-# atau
-go run main.go
+gomen serve
 ```
 
 ## Project Structure
@@ -359,15 +348,9 @@ make resource name=Product
 ### CLI Commands
 
 ```bash
-# Menggunakan Make (Recommended)
-make help                    # Tampilkan bantuan
-make list                    # Lihat semua commands
-make version                 # Lihat versi CLI
-
-# Atau menggunakan CLI langsung
-./bin/gomen help              # Tampilkan bantuan
-./bin/gomen list              # Lihat semua commands
-./bin/gomen version           # Lihat versi CLI
+gomen help                    # Tampilkan bantuan
+gomen list                    # Lihat semua commands
+gomen version                 # Lihat versi CLI
 ```
 
 ## Running the Application
@@ -376,7 +359,7 @@ make version                 # Lihat versi CLI
 
 ```bash
 # Standard run
-make run
+gomen serve
 
 # Hot reload (requires air)
 go install github.com/air-verse/air@latest
@@ -386,8 +369,8 @@ make dev
 ### Production Build
 
 ```bash
-go build -o gomen main.go
-./gomen
+go build -o app main.go
+./app
 ```
 
 ## API Endpoints
@@ -503,18 +486,18 @@ curl -X GET "http://localhost:8080/api/v1/users?page=1&per_page=10" \
 
 ```bash
 # 1. Buat resource lengkap
-make resource name=Post
+gomen make:resource Post
 
 # 2. Edit model sesuai kebutuhan
 # app/models/post.go
 
 # 3. Buat migration
-make migration name=create_posts_table
+gomen make:migration create_posts_table
 
 # 4. Register routes di routes/api.go
 
 # 5. Jalankan migration
-make migrate
+gomen migrate
 ```
 
 ### Manual Steps
