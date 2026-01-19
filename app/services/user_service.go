@@ -2,6 +2,7 @@ package services
 
 import (
 	"errors"
+	"fmt"
 	"gomen/app/models"
 	"gomen/app/requests"
 	"gomen/app/responses"
@@ -39,6 +40,9 @@ func (s *UserService) GetByID(id uint) (*models.User, error) {
 
 	var user models.User
 	if err := db.First(&user, id).Error; err != nil {
+		helpers.Error(err, "Failed to get user by ID").
+			Uint("user_id", id).
+			Msg("Database query failed")
 		return nil, errors.New("user not found")
 	}
 
@@ -51,11 +55,17 @@ func (s *UserService) Create(req *requests.CreateUserRequest) (*models.User, err
 	// Check if email already exists
 	var existingUser models.User
 	if err := db.Where("email = ?", req.Email).First(&existingUser).Error; err == nil {
+		helpers.Warn("Attempted to create user with existing email").
+			Str("email", req.Email).
+			Msg("Email already registered")
 		return nil, errors.New("email already registered")
 	}
 
 	hashedPassword, err := helpers.HashPassword(req.Password)
 	if err != nil {
+		helpers.Error(err, "Failed to hash password").
+			Str("email", req.Email).
+			Msg("Password hashing error")
 		return nil, errors.New("failed to hash password")
 	}
 
@@ -67,8 +77,17 @@ func (s *UserService) Create(req *requests.CreateUserRequest) (*models.User, err
 	}
 
 	if err := db.Create(&user).Error; err != nil {
-		return nil, errors.New("failed to create user")
+		helpers.Error(err, "Failed to create user").
+			Str("email", req.Email).
+			Str("name", req.Name).
+			Msg("Database insert failed")
+		return nil, fmt.Errorf("failed to create user: %w", err)
 	}
+
+	helpers.Info("User created successfully").
+		Uint("user_id", user.ID).
+		Str("email", user.Email).
+		Msg("New user registered")
 
 	return &user, nil
 }
@@ -78,6 +97,9 @@ func (s *UserService) Update(id uint, req *requests.UpdateUserRequest) (*models.
 
 	var user models.User
 	if err := db.First(&user, id).Error; err != nil {
+		helpers.Error(err, "User not found for update").
+			Uint("user_id", id).
+			Msg("Database query failed")
 		return nil, errors.New("user not found")
 	}
 
@@ -85,6 +107,10 @@ func (s *UserService) Update(id uint, req *requests.UpdateUserRequest) (*models.
 	if req.Email != user.Email {
 		var existingUser models.User
 		if err := db.Where("email = ? AND id != ?", req.Email, id).First(&existingUser).Error; err == nil {
+			helpers.Warn("Attempted to update user with existing email").
+				Uint("user_id", id).
+				Str("new_email", req.Email).
+				Msg("Email already registered")
 			return nil, errors.New("email already registered")
 		}
 	}
@@ -97,8 +123,17 @@ func (s *UserService) Update(id uint, req *requests.UpdateUserRequest) (*models.
 	}
 
 	if err := db.Save(&user).Error; err != nil {
-		return nil, errors.New("failed to update user")
+		helpers.Error(err, "Failed to update user").
+			Uint("user_id", id).
+			Str("email", req.Email).
+			Msg("Database update failed")
+		return nil, fmt.Errorf("failed to update user: %w", err)
 	}
+
+	helpers.Info("User updated successfully").
+		Uint("user_id", user.ID).
+		Str("email", user.Email).
+		Msg("User information modified")
 
 	return &user, nil
 }
@@ -108,12 +143,26 @@ func (s *UserService) Delete(id uint) error {
 
 	var user models.User
 	if err := db.First(&user, id).Error; err != nil {
+		helpers.Error(err, "User not found for deletion").
+			Uint("user_id", id).
+			Msg("Database query failed")
 		return errors.New("user not found")
 	}
 
+	userEmail := user.Email
+
 	if err := db.Delete(&user).Error; err != nil {
-		return errors.New("failed to delete user")
+		helpers.Error(err, "Failed to delete user").
+			Uint("user_id", id).
+			Str("email", userEmail).
+			Msg("Database delete failed")
+		return fmt.Errorf("failed to delete user: %w", err)
 	}
+
+	helpers.Info("User deleted successfully").
+		Uint("user_id", id).
+		Str("email", userEmail).
+		Msg("User removed from database")
 
 	return nil
 }

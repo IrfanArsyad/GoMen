@@ -6,8 +6,8 @@ import (
 	"gomen/config"
 	"gomen/database/migrations"
 	"gomen/database/seeders"
+	"gomen/helpers"
 	"gomen/routes"
-	"log"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -21,6 +21,10 @@ func main() {
 
 	// Load configuration
 	config.Load()
+
+	// Initialize logger
+	cfg := config.Get()
+	helpers.InitLogger(cfg.App.Debug, cfg.App.Env)
 
 	// Connect to database
 	config.ConnectDatabase()
@@ -64,9 +68,9 @@ func main() {
 
 	// Start server
 	port := config.Get().App.Port
-	log.Printf("Server starting on port %s", port)
+	helpers.Info("Server starting").Str("port", port).Msg("GoMen API Server")
 
 	if err := router.Run(":" + port); err != nil {
-		log.Fatal("Failed to start server: " + err.Error())
+		helpers.Fatal(err, "Failed to start server").Msg("")
 	}
 }

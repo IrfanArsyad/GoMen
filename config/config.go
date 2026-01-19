@@ -1,7 +1,6 @@
 package config
 
 import (
-	"log"
 	"os"
 
 	"github.com/joho/godotenv"
@@ -11,6 +10,7 @@ type Config struct {
 	App      AppConfig
 	Database DatabaseConfig
 	JWT      JWTConfig
+	CORS     CORSConfig
 }
 
 type AppConfig struct {
@@ -34,13 +34,15 @@ type JWTConfig struct {
 	ExpireTime int
 }
 
+type CORSConfig struct {
+	AllowedOrigins string
+}
+
 var AppCfg *Config
 
 func Load() {
-	err := godotenv.Load()
-	if err != nil {
-		log.Println("Warning: .env file not found, using environment variables")
-	}
+	// Load .env file if it exists, otherwise use environment variables
+	_ = godotenv.Load()
 
 	AppCfg = &Config{
 		App: AppConfig{
@@ -60,6 +62,9 @@ func Load() {
 		JWT: JWTConfig{
 			Secret:     getEnv("JWT_SECRET", "your-secret-key"),
 			ExpireTime: 24, // hours
+		},
+		CORS: CORSConfig{
+			AllowedOrigins: getEnv("ALLOWED_ORIGINS", "http://localhost:3000,http://localhost:8080"),
 		},
 	}
 }
